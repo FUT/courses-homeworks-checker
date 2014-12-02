@@ -12,6 +12,7 @@ source 'https://rubygems.org'
 
 # Project requirements
 gem 'rake'
+gem 'pry'
 
 # Component requirements
 gem 'bcrypt'

@@ -4,8 +4,13 @@ module CoursesHomework
     use ConnectionPoolManagement
     register Padrino::Mailer
     register Padrino::Helpers
+    register Padrino::Admin::AccessControl
 
-    enable :sessions
+    set :admin_model, 'Account'
+    set :login_page,  '/sessions/new'
+
+    enable  :sessions
+    disable :store_location
 
     ##
     # Caching support.

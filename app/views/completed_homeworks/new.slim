@@ -1,0 +1,20 @@
+h1 Create completed homework
+
+= form_for @completed_homework, :create do |f|
+  .input-block
+    = f.label :homework
+    = select_tag('completed_homework[homework_id]', :collection => @homeworks, :fields => [:title, :id], :include_blank => false)
+  .input-block
+    = f.label :title
+    = f.text_field :title
+  .input-block
+    = f.label :url
+    = f.text_field :url
+  .input-block
+    = f.label :answer
+    = f.text_area :answer
+
+  .create
+    = f.submit 'Create'
+
+= link_to 'Back', url_for(:completed_homeworks, :index)

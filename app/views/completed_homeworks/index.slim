@@ -1,0 +1,16 @@
+h1 Homeworks
+
+table
+  tr
+    th Student
+    - @homeworks.each do |hw|
+      th = hw.title
+
+  - @accounts.each do |account|
+    tr
+      td = account.name
+      - @homeworks.each do |hw|
+        - completed = account.completed_homework_for(hw)
+        td = 'Done' if completed
+
+= link_to 'Submit completed homework', url_for(:completed_homeworks, :new)

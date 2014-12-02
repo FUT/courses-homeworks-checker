@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2) do
+ActiveRecord::Schema.define(version: 4) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
@@ -23,12 +23,24 @@ ActiveRecord::Schema.define(version: 2) do
     t.datetime "updated_at"
   end
 
+  create_table "completed_homeworks", force: true do |t|
+    t.integer  "account_id",                  null: false
+    t.integer  "homework_id",                 null: false
+    t.text     "answer"
+    t.string   "url"
+    t.string   "title"
+    t.boolean  "approved",    default: false, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "homeworks", force: true do |t|
     t.text     "description", null: false
     t.date     "deadline",    null: false
     t.integer  "complexity",  null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "title",       null: false
   end
 
 end

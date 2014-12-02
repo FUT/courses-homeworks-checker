@@ -1,6 +1,9 @@
 class Account < ActiveRecord::Base
   attr_accessor :password, :password_confirmation
 
+  has_many :completed_homeworks
+  has_many :homeworks, through: :completed_homeworks
+
   # Validations
   validates_presence_of     :email, :role
   validates_presence_of     :password,                   :if => :password_required
@@ -21,6 +24,10 @@ class Account < ActiveRecord::Base
   def self.authenticate(email, password)
     account = where("lower(email) = lower(?)", email).first if email.present?
     account && account.has_password?(password) ? account : nil
+  end
+
+  def completed_homework_for(homework)
+    completed_homeworks.find_by homework_id: homework
   end
 
   def has_password?(password)
