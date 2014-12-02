@@ -6,7 +6,11 @@ CoursesHomework::Admin.controllers :sessions do
   post :create do
     if account = Account.authenticate(params[:email], params[:password])
       set_current_account(account)
-      redirect url(:base, :index)
+      if account.role == 'admin'
+        redirect url(:base, :index)
+      else
+        redirect '/'
+      end
     elsif Padrino.env == :development && params[:bypass]
       account = Account.first
       set_current_account(account)

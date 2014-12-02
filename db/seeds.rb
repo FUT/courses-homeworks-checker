@@ -10,7 +10,8 @@ password  = shell.ask "Tell me the password to use:"
 
 shell.say ""
 
-account = Account.create(:email => email, :name => "Foo", :surname => "Bar", :password => password, :password_confirmation => password, :role => "admin")
+account = Account.create(:email => 'admin@qwe.qwe', :name => "Foo", :surname => "Bar", :password => 123123, :password_confirmation => 123123, :role => "admin")
+account = Account.create(:email => 'user@qwe.qwe', :name => "Foo", :surname => "Bar", :password => 123123, :password_confirmation => 123123, :role => "user")
 
 if account.valid?
   shell.say "================================================================="
